@@ -49,7 +49,8 @@ public class Port extends JFrame {
                String desc=""; if(desc.length()<100) desc=description.getText();
                String compS=""; if(compS.length()<20) sender.getText();
                String compR=""; if(compR.length()<20) receiver.getText();
-               Container c= new Container(ID, w, ct, ins, pri,desc,compS, compR);
+               String check="";
+               Container c= new Container(ID, w, ct, ins, pri,desc,compS, compR,check);
                Hub h= new Hub();
                h.stack(c);
                state.setText(h.toString());

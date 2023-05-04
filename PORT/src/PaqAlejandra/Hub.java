@@ -108,5 +108,26 @@ public class Hub {
         return s;
     }
 
+    public String check(int w){
+        String s="";
+        for (int i = 0; i < c.length; i++) {
+            for (int j = 0; j < c.length; j++) {
+                if(c[i][j].getId()<= w){
+                    c[i][j].setCheck("Check");
+                   s+= String.valueOf(c[i][j].getId());
+                   s+=c[i][j].getCompanyS();
+                   s+=c[i][j].getWeight();
+                   s+=c[i][j].getCheck();
+                return s;}
+                else
+                    c[i][j].setCheck("");
+            }
+        }
+        return s;
+    }
+
+
+
+
 
 }

@@ -3,7 +3,7 @@ package PaqAlejandra;
 public class Container {
     private int id;
     private int weight,priority;
-    private String countryO, companyS, companyR, description;
+    private String countryO, companyS, companyR, description, check;
     private boolean inspected;
 
 
@@ -14,7 +14,7 @@ public class Container {
         this.priority=3;
     }
 
-     public Container(int id, int weight, String countryO, String inspected, int priority, String description, String companyS, String companyR){
+     public Container(int id, int weight, String countryO, String inspected, int priority, String description, String companyS, String companyR, String check){
         this(id);
         this.setWeight(weight);
         this.setCountryO(countryO);
@@ -23,6 +23,7 @@ public class Container {
         this.setDescription(description);
         this.setCompanyS(companyS);
         this.setCompanyR(companyR);
+        this.setCheck(check);
     }
 
 
@@ -61,6 +62,9 @@ public class Container {
 
     public void setCompanyR(String companyR){ if(companyR.length()<20)this.companyR=companyR;}
     public String getCompanyR(){return companyR;}
+
+    public void setCheck(String check){this.check=check;}
+    public String getCheck(){return check;}
 
     public String toString(){
         String s="";
