@@ -1,6 +1,7 @@
 package PaqAlejandra;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -26,6 +27,7 @@ public class Port extends JFrame {
     private JTextField numbercont;
     private JCheckBox inspected;
     private JTextArea state;
+    private JButton Check;
 
     public Port() {
         setTitle("PORT");
@@ -33,35 +35,44 @@ public class Port extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setContentPane(Port);
-
+        final int[] ID = {0};
+        final int[] w = { 0 };
+        final int[] pri = { 0 };
+        final String[] ct = {""};
+        final String[] ins = { "" };
+        final String[] desc = {""};
+        String compS="";
+        String compR="";
+        String check="";
+        Hub h= new Hub();
 
         pile.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                int ID; ID= Integer.parseInt(id.getText());
-                int w; w= Integer.parseInt(weight.getText());
-                String ct; ct= (String) country.getSelectedItem();
-                String ins; if( inspected.isSelected())ins= "yes";
-                else ins= "no";
-               int pri=3; if(pri1.isSelected()) pri=1;
-               else if(pri2.isSelected()) pri=2;
-               else if(pri3.isSelected()) pri=3;
-               String desc=""; if(desc.length()<100) desc=description.getText();
-               String compS=""; if(compS.length()<20) sender.getText();
-               String compR=""; if(compR.length()<20) receiver.getText();
-               String check="";
-               Container c= new Container(ID, w, ct, ins, pri,desc,compS, compR,check);
-               Hub h= new Hub();
+                 ID[0] = Integer.parseInt(id.getText());
+                w[0] = Integer.parseInt(weight.getText());
+             ct[0] = (String) country.getSelectedItem();
+                 if( inspected.isSelected()) ins[0] = "yes";
+                else ins[0] = "no";
+                pri[0] =3; if(pri1.isSelected()) pri[0] =1;
+               else if(pri2.isSelected()) pri[0] =2;
+               else if(pri3.isSelected()) pri[0] =3;
+              if(desc[0].length()<100) desc[0] =description.getText();
+             if(compS.length()<20) sender.getText();
+              if(compR.length()<20) receiver.getText();
+
+                Container c= new Container(ID[0], w[0], ct[0], ins[0], pri[0], desc[0],compS, compR,check);
                h.stack(c);
                state.setText(h.toString());
 
 
+            }
 
+        });
 
                 showContainerDescriptionButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        int x; x= Integer.parseInt(id.getText());
-                       descriptionshow.setText(h.display(x));
+                       descriptionshow.setText(h.display( Integer.parseInt(id.getText())));
                     }
                 });
 
@@ -71,23 +82,27 @@ public class Port extends JFrame {
 
                     public void actionPerformed(ActionEvent e) {
                         int y;y= Integer.parseInt(columNumber.getText());
-                        h.remove(y);
+                        h.remove(y-1);
                         state.setText(h.toString());
                     }
                 });
 
-                country2.addActionListener(new ActionListener() {
+                numberOfContainersButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        String ct2; ct2= (String) country2.getSelectedItem();
-                        numbercont.setText(h.countCountry(ct2));
-
+                        String c0= (String) country2.getSelectedItem();
+                        numbercont.setText(h.countCountry(c0));
                     }
                 });
 
+                Check.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        int w; w= Integer.parseInt(weight.getText());
 
-            }
-        });
+                        JOptionPane.showMessageDialog(null,h.check(w));}
 
+
+                    }
+                );
 
 
     }

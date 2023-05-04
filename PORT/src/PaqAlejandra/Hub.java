@@ -52,19 +52,21 @@ public class Hub {
     }
 
     public String display(int id){
-
+        String s="";
         for (int i = (c.length-1); i >=0 ; i--) {
             for (int j = 0; j < c[i].length; j++) {
                 if (c[i][j]!=null) {
                     if (c[i][j].getId()==id){
-                        System.out.println("\n"+ "Id: " + c[i][j].getId());
-                        System.out.println("Weight: " + c[i][j].getWeight());
-                        System.out.println("Country of origin: " + c[i][j].getCountryO());
-                        System.out.println("Inspection: " + c[i][j].isInspected());
-                        System.out.println("Priority: " + c[i][j].getPriority());
-                        System.out.println("Description: " + c[i][j].getDescription());
-                        System.out.println("Sending company: " + c[i][j].getCompanyS());
-                        System.out.println("Receiving company: " + c[i][j].getCompanyR() + "\n");
+
+                      s+="Id: " + c[i][j].getId()+"\n";
+                        s+="Weight: " + c[i][j].getWeight()+"\n";
+                        s+="Country of origin: " + c[i][j].getCountryO()+"\n";
+                       s+="Inspection: " + c[i][j].isInspected()+"\n";
+                        s+="Priority: " + c[i][j].getPriority()+"\n";
+                        s+="Description: " + c[i][j].getDescription()+"\n";
+                        s+="Sending company: " + c[i][j].getCompanyS()+"\n";
+                        s+="Receiving company: " + c[i][j].getCompanyR() + "\n";
+                        return s;
                     }
                     else {
                         System.out.println("Container doesn't exist");
@@ -73,7 +75,7 @@ public class Hub {
             }
         }
 
-        return null;
+        return s ;
     }
 
 
@@ -88,8 +90,8 @@ public class Hub {
                     co++;
             }}}
         }
-        System.out.println("Number of containers from " +countryO +": " + co);
-        return countryO;
+
+        return "Number of containers from " +countryO +": " + co;
     }
 
     public String toString(){
@@ -112,7 +114,7 @@ public class Hub {
         String s="";
         for (int i = 0; i < c.length; i++) {
             for (int j = 0; j < c.length; j++) {
-                if(c[i][j].getId()<= w){
+                if(c[i][j].getWeight()<= w){
                     c[i][j].setCheck("Check");
                    s+= String.valueOf(c[i][j].getId());
                    s+=c[i][j].getCompanyS();
